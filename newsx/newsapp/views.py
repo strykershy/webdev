@@ -8,4 +8,6 @@ def newsitems(request):
     return render(request, 'newsapp/newsitems.html', {'articles': articles})
 
 def details(request, slug):
-    return HttpResponse(slug)
+    #return HttpResponse(slug)
+    article = Article.objects.get(slug=slug)
+    return render(request,'newsapp/detail.html', {'article' : article})
