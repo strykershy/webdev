@@ -5,13 +5,14 @@ from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
+from newsapp import views as article_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^account/', include('account.urls')),
     url(r'^newsapp/', include('newsapp.urls')),
     url(r'^about/$', views.about),
-    url(r'^$', views.home),
+    url(r'^$', article_views.newsitems, name="home"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

@@ -14,21 +14,27 @@
     {% endblock stylesheet %}
   </head>
 
-  <body>
+  <body class="wrapper">
     
       
-        <header class="wrapper">
+        <header>
 
-            <h1><a href="{% url 'articles:items'%}"><img src="{% static 'img/logo.png'%}" /></a></h1>
+            <h1><a href="{% url 'home'%}"><img src="{% static 'img/logo.png'%}" /></a></h1>
 
                 <nav>
                   <ul>
+                    {% if user.is_authenticated %}
                     <li>
                       <form class="logout" action="{%url 'account:logout'%}" method="post">
                         {% csrf_token %}
                         <button type="submit">Logout</button>
                       </form>
                     </li>
+                    <li><a href="{% url 'articles:profile' %}" class="highlight">Add New Article</a></li>
+                    {% else %}
+                      <li><a href="{% url 'account:login' %}">Login</a></li>
+                      <li><a href="{% url 'account:signup' %}">SignUp</a></li>
+                    {% endif %}
                   </ul>
                 </nav>
 
